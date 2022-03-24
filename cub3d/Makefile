@@ -67,7 +67,7 @@ re:	fclean all
 archives_clean: 
 	$(REMOVE) $(ARCHIVES_PATH)
 
-clean:
+clean: libft_clean libmlx_clean
 	$(REMOVE) $(OBJECTS_PATH)
 
 fclean: clean archives_clean libft_clean libmlx_clean
