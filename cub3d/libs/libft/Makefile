@@ -35,7 +35,9 @@ SRC =	ft_atoi.c \
 		ft_strtrim.c \
 		ft_substr.c \
 		ft_tolower.c \
-		ft_toupper.c 
+		ft_toupper.c \
+		gnl.c \
+		gnl_utils.c
 
 BONUS = ft_lstadd_back.c \
 		ft_lstadd_front.c \
@@ -47,14 +49,16 @@ BONUS = ft_lstadd_back.c \
 		ft_lstnew.c \
 		ft_lstsize.c 
 
+HEADERS = libft.h gnl.h
+
 OBJ_BONUS = $(BONUS:.c=.o)
 
-all: $(NAME)
+all: $(NAME) bonus
 
 $(NAME): $(OBJ_SRC)
 	ar -rcs $(NAME) $(OBJ_SRC)
 
-$(OBJ_SRC): $(SRC) 
+$(OBJ_SRC): $(SRC) $(HEADERS)
 	$(CC) $(FLAGS) -c $(SRC)
 
 bonus: $(OBJ_BONUS)
