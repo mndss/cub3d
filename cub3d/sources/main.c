@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:57:10 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/24 16:39:38 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:53:12 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ int	print_err(int msg)
 	return (msg + 1);
 }
 
-int	invalid_args(int argc, char *argv[])
+int	invalid_args(int argc, const char *map)
 {
 	if (argc != 2)
 		return (print_err(ERR_ARGS));
-	if (ft_strncmp(&argv[1][strlen(argv[1]) - 4], ".cub", ft_strlen(argv[1])))
+	if (ft_strncmp(&map[strlen(map) - 4], ".cub", ft_strlen(map)))
 		return (print_err(ERR_INVALID_EXT));
 	return (0);
 }
 
 int	ft_setup(int argc, char *argv[])
 {
-	if (invalid_args(argc, argv))
+	if (invalid_args(argc, argv[1]))
 		return (1);
 	return (0);
 }
