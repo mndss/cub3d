@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 16:57:10 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/28 15:40:44 by guferrei         ###   ########.fr       */
+/*   Created: 2022/03/28 15:36:40 by guferrei          #+#    #+#             */
+/*   Updated: 2022/03/28 15:38:27 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	main(int argc, char *argv[])
+void	free_matrix(void **ptr)
 {
-	ft_setup(argc, argv);
-	return (0);
+	int	count;
+
+	count = 0;
+	while (ptr[count])
+	{
+		free(ptr[count]);
+		count++;
+	}
+	free(ptr);
 }

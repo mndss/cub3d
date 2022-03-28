@@ -29,7 +29,11 @@ ARCHIVES_PATH = ./archives
 HEADER_FILE = cub3d.h
 HEADER = $(addprefix $(INCLUDES_PATH)/,$(HEADER_FILE))
 
-SOURCES_FILES = main.c \
+SOURCES_FILES =	main.c \
+				handle_args.c \
+				read_map.c \
+				temp.c \
+				utils.c \
 
 SOURCES = $(addprefix $(SOURCES_PATH)/,$(SOURCES_FILES))
 
