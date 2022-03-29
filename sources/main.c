@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:57:10 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/28 15:40:44 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/03/28 20:11:23 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	main(int argc, char *argv[])
 {
-	ft_setup(argc, argv);
+	t_map_info	map_info;
+
+	ft_setup(argc, argv, &map_info);
 	return (0);
 }

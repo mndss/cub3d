@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:26:33 by guferrei          #+#    #+#             */
-/*   Updated: 2022/03/28 15:36:08 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:05:04 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	invalid_args(int argc, const char *map)
 	return (0);
 }
 
-int	ft_setup(int argc, char *argv[])
+int	ft_setup(int argc, char *argv[], t_map_info *map_info)
 {
 	int		n_lines;
 	char	**map;
@@ -43,5 +43,8 @@ int	ft_setup(int argc, char *argv[])
 	if (n_lines < 0)
 		return (print_err(ERR_NOT_FOUND));
 	map = read_map(argv[1], n_lines);
+	get_info(map, map_info, (n_lines - 6));
+	if (create_images(map_info))
+		return (2);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:29:49 by guferrei          #+#    #+#             */
-/*   Updated: 2022/03/28 15:40:32 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/03/28 20:33:27 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,25 @@ char	**read_map(char *filename, int n_lines)
 	}
 	if (gnl == -1)
 	{
-		free_matrix(map);
+		free_matrix((void **)map);
 		return (NULL);
 	}
 	return (map);
+}
+
+int	get_map(char **map, t_map_info *map_info, int map_size)
+{
+	int count_matrix;
+	int	count_map;
+
+	count_matrix = 6;
+	count_map = 0;
+	map_info->map = (char **)ft_calloc(map_size, sizeof(char *));
+	while (map[count_matrix])
+	{
+		map_info->map[count_map] = ft_strdup(map[count_matrix]);
+		count_map++;
+		count_matrix++;
+	}
+	return (0);
 }

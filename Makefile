@@ -34,6 +34,8 @@ SOURCES_FILES =	main.c \
 				read_map.c \
 				temp.c \
 				utils.c \
+				get_map_config.c \
+				create_image.c 
 
 SOURCES = $(addprefix $(SOURCES_PATH)/,$(SOURCES_FILES))
 
@@ -42,11 +44,11 @@ OBJECTS = $(addprefix $(OBJECTS_PATH)/,$(subst .c,.o,$(SOURCES_FILES)))
 all: $(NAME)
 
 $(NAME): build_libft build_mlx $(OBJECTS) $(HEADER)
-	$(CC) $(CFLAGS) -g $(OBJECTS) -o $(NAME) -L $(ARCHIVES_PATH) -I $(EXTERNAL_LIBS) $(INTERNAL_LIBS)
+	$(CC) $(CFLAGS) -g $(OBJECTS) -o $(NAME) -L $(ARCHIVES_PATH) -I $(EXTERNAL_LIBS) $(INTERNAL_LIBS) -fsanitize=address
 
 $(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.c $(HEADER)
 	$(SAFE_MAKEDIR) $(OBJECTS_PATH)
-	$(CC) $(CFLAGS) -g -I $(INCLUDES_PATH) -o $@ -c $< 
+	$(CC) $(CFLAGS) -g -I $(INCLUDES_PATH) -o $@ -c $< -fsanitize=address
 
 build_libft: 
 	$(MAKE_EXTERNAL) $(LIBFT_PATH)
