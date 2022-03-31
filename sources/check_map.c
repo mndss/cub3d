@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:56:00 by guferrei          #+#    #+#             */
-/*   Updated: 2022/03/31 15:42:54 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:03:47 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,65 +24,67 @@ int	check_arround(char **map, int x, int y)
 	if (map[y][x] == '1' || map[y][x] == ' ')
 		return (0);
 	if ((map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S'
-		|| map[y][x] == 'W' || map[y][x] == 'E') && y > 0)
+		|| map[y][x] == 'W' || map[y][x] == 'E') && y > 0 && map[y + 1])
 	{
 		if (check_direction(map[y - 1][x]) || check_direction(map[y + 1][x])
 			|| check_direction(map[y][x + 1]) || check_direction(map[y][x - 1])
-			|| check_direction(map[y - 1][x - 1]) || check_direction(map[y - 1][x + 1])
-			|| check_direction(map[y + 1][x - 1]) || check_direction(map[y + 1][x + 1]))
-		{
-			printf("map[%d][%d] ERRO! MAPA INVÁLIDO\n", y, x);
+			|| check_direction(map[y - 1][x - 1])
+			|| check_direction(map[y - 1][x + 1])
+			|| check_direction(map[y + 1][x - 1])
+			|| check_direction(map[y + 1][x + 1]))
 			return (1);
-		}
 		return (0);
 	}
-	else
-	{
-		printf("%c ERRO! CARACTER INVÁLIDO\n", map[y][x]);
-		return (1);
-	}
+	return (1);
 }
 
-int	check_map(char **map)
+float	find_direction(char direction)
+{
+	if (direction == 'N')
+		return (PI * 1.5);
+	if (direction == 'S')
+		return (PI / 2.0);
+	if (direction == 'W')
+		return (PI);
+	else
+		return (0);
+}
+
+int	check_player(char cord, int y, int x, t_player *player)
+{
+	if (cord == 'N' || cord == 'S' || cord == 'W' || cord == 'E')
+	{
+		if (player->x)
+			return (1);
+		player->y = y;
+		player->x = x;
+		player->direction = find_direction(cord);
+	}
+	return (0);
+}
+
+int	check_map(t_map_info *map)
 {
 	int	x;
 	int	y;
-	int	p;
 
 	x = 0;
 	y = 0;
-	p = 0;
-	while(map[y])
+	while (map->map[y])
 	{
-		while(map[y][x])
+		while (map->map[y][x])
 		{
-			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'W' || map[y][x] == 'E')
-			{
-				if (p > 0)
-				{
-					printf("map[%d][%d] ERRO! PLAYER DUPLICADO\n", y, x);
-					return (1);
-				}
-				p++;
-				//GUARDA POSIÇÃO PLAYER;
-			}
-			if (check_arround(map, x, y))
-				return (1);
+			if (check_player(map->map[y][x], y, x, &map->player))
+				return (print_err(ERR_DOUBLE_PLAYER));
+			if (check_arround(map->map, x, y))
+				return (print_err(ERR_INVALID_MAP));
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	if (p == 0)
-	{
-		printf("ERRO! SEM PLAYER\n");
-		return (1);
-	}
-	printf("SUCESSO!!\n");
+	print_player_info(&map->player);
+	if (!map->player.x)
+		return (print_err(ERR_NO_PLAYER));
 	return (0);
 }
-
-//0 || N, S, W, E -> *PTR && !' '           <- 0 ->
-//
-//ptr[y][x] -> ptr[y - 1][x] ...
-

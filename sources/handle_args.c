@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:26:33 by guferrei          #+#    #+#             */
-/*   Updated: 2022/03/31 15:45:02 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:51:25 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-int	print_err(int msg)
-{
-	char	*err[ERROR_SIZE];
-
-	err[ERR_ARGS] = "Error\nInvalid numbers of arguments\n";
-	err[ERR_INVALID_EXT] = "Error\nInvalid extension from map\n";
-	err[ERR_NOT_FOUND] = "Error\nFile not found\n";
-	ft_putstr_fd(err[msg], 2);
-	return (msg + 1);
-}
 
 int	invalid_args(int argc, const char *map)
 {
@@ -45,7 +34,7 @@ int	ft_setup(int argc, char *argv[], t_map_info *map_info)
 	map = read_map(argv[1], n_lines);
 	get_info(map, map_info, (n_lines - 6));
 	free_matrix(map);
-	check_map(map_info->map);
+	check_map(map_info);
 	//if (create_images(map_info))
 	//	return (2);
 	return (0);
