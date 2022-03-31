@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:56:00 by guferrei          #+#    #+#             */
-/*   Updated: 2022/03/31 17:03:47 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:10:07 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int	check_arround(char **map, int x, int y)
 	if ((map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S'
 		|| map[y][x] == 'W' || map[y][x] == 'E') && y > 0 && map[y + 1])
 	{
-		if (check_direction(map[y - 1][x]) || check_direction(map[y + 1][x])
-			|| check_direction(map[y][x + 1]) || check_direction(map[y][x - 1])
+		if (check_direction(map[y - 1][x])
+			|| check_direction(map[y + 1][x])
+			|| check_direction(map[y][x + 1])
+			|| check_direction(map[y][x - 1])
 			|| check_direction(map[y - 1][x - 1])
 			|| check_direction(map[y - 1][x + 1])
 			|| check_direction(map[y + 1][x - 1])
