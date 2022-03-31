@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:26:33 by guferrei          #+#    #+#             */
-/*   Updated: 2022/03/28 21:05:04 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:45:02 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ int	ft_setup(int argc, char *argv[], t_map_info *map_info)
 		return (print_err(ERR_NOT_FOUND));
 	map = read_map(argv[1], n_lines);
 	get_info(map, map_info, (n_lines - 6));
-	if (create_images(map_info))
-		return (2);
+	free_matrix(map);
+	check_map(map_info->map);
+	//if (create_images(map_info))
+	//	return (2);
 	return (0);
 }

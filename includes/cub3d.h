@@ -28,12 +28,13 @@ enum {
 };
 
 //UTILS
-void	free_matrix(void **ptr);
-int	print_err(int msg);
+void	free_matrix(char **ptr);
+int		print_err(int msg);
 
 //CHECKING ERRORS
 int	ft_setup(int argc, char *argv[], t_map_info *map_info);
 int	invalid_args(int argc, const char *map);
+int	check_map(char **map);
 
 //READ MAP
 int		count_lines(char *filename);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_config.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 20:16:30 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/28 20:49:15 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:46:56 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ char	*get_textures(char *prefix, char **map)
 			temp = ft_split(map[count], ' ');
 			if (!temp[1] || temp[2])
 			{
-				free_matrix((void **)temp);
+				free_matrix(temp);
 				return (NULL);
 			}
 			path = ft_strdup(temp[1]);
-			free_matrix((void **)temp);
+			free_matrix(temp);
 			return (path);
 		}
 		count++;

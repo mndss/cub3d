@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:29:49 by guferrei          #+#    #+#             */
-/*   Updated: 2022/03/28 20:33:27 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:48:21 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**read_map(char *filename, int n_lines)
 	count = 0;
 	fd = get_fd(filename);
 	gnl = 1;
-	map = malloc((n_lines + 1) * sizeof(char *));
+	map = ft_calloc((n_lines + 1), sizeof(char *));
 	if (!map)
 		return (NULL);
 	while (gnl == 1)
@@ -65,7 +65,7 @@ char	**read_map(char *filename, int n_lines)
 	}
 	if (gnl == -1)
 	{
-		free_matrix((void **)map);
+		free_matrix(map);
 		return (NULL);
 	}
 	return (map);
@@ -73,12 +73,12 @@ char	**read_map(char *filename, int n_lines)
 
 int	get_map(char **map, t_map_info *map_info, int map_size)
 {
-	int count_matrix;
+	int	count_matrix;
 	int	count_map;
 
 	count_matrix = 6;
 	count_map = 0;
-	map_info->map = (char **)ft_calloc(map_size, sizeof(char *));
+	map_info->map = (char **)ft_calloc((map_size + 1), sizeof(char *));
 	while (map[count_matrix])
 	{
 		map_info->map[count_map] = ft_strdup(map[count_matrix]);
