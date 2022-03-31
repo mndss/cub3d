@@ -36,7 +36,8 @@ SOURCES_FILES =	main.c \
 				utils.c \
 				get_map_config.c \
 				create_image.c \
-				check_map.c
+				check_map.c \
+				set_game.c
 
 SOURCES = $(addprefix $(SOURCES_PATH)/,$(SOURCES_FILES))
 
@@ -76,6 +77,7 @@ archives_clean:
 
 clean: libft_clean libmlx_clean
 	$(REMOVE) $(OBJECTS_PATH)
+	$(REMOVE) $(ARCHIVES_PATH)
 
 fclean: clean archives_clean libft_clean libmlx_clean
 	$(REMOVE) $(NAME)

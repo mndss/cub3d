@@ -25,9 +25,16 @@ typedef struct s_map_info {
 	char		*f;
 	char		*c;
 	char		**map;
-	t_player	player;
 } t_map_info;
 
+typedef struct s_data {
+	void		*mlx;
+	void		*win;
+	float		fov_angle;
+	int			pxl_p_ray;
+	t_map_info	map;
+	t_player	player;
+} t_data;
 
 enum {
 	ERR_ARGS,
@@ -43,9 +50,9 @@ void	free_matrix(char **ptr);
 int		print_err(int msg);
 
 //CHECKING ERRORS
-int	ft_setup(int argc, char *argv[], t_map_info *map_info);
+int	ft_setup(int argc, char *argv[], t_data *data);
 int	invalid_args(int argc, const char *map);
-int	check_map(t_map_info *map);
+int	check_map(t_data *data);
 
 //READ MAP
 int		count_lines(char *filename);
@@ -62,4 +69,7 @@ void	print_player_info(t_player *player);
 //CREATE MAP 
 int		create_images(t_map_info *map_info);
 
+
+// GAME CONFIG
+int	game_config(t_data *data);
 #endif

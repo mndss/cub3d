@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:26:33 by guferrei          #+#    #+#             */
-/*   Updated: 2022/03/31 16:51:25 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:43:46 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	invalid_args(int argc, const char *map)
 	return (0);
 }
 
-int	ft_setup(int argc, char *argv[], t_map_info *map_info)
+int	ft_setup(int argc, char *argv[], t_data *data)
 {
 	int		n_lines;
 	char	**map;
@@ -32,9 +32,9 @@ int	ft_setup(int argc, char *argv[], t_map_info *map_info)
 	if (n_lines < 0)
 		return (print_err(ERR_NOT_FOUND));
 	map = read_map(argv[1], n_lines);
-	get_info(map, map_info, (n_lines - 6));
+	get_info(map, &data->map, (n_lines - 6));
 	free_matrix(map);
-	check_map(map_info);
+	check_map(data);
 	//if (create_images(map_info))
 	//	return (2);
 	return (0);

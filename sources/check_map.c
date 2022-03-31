@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:56:00 by guferrei          #+#    #+#             */
-/*   Updated: 2022/03/31 17:10:07 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:44:44 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,28 +65,28 @@ int	check_player(char cord, int y, int x, t_player *player)
 	return (0);
 }
 
-int	check_map(t_map_info *map)
+int	check_map(t_data *data)
 {
 	int	x;
 	int	y;
 
 	x = 0;
 	y = 0;
-	while (map->map[y])
+	while (data->map.map[y])
 	{
-		while (map->map[y][x])
+		while (data->map.map[y][x])
 		{
-			if (check_player(map->map[y][x], y, x, &map->player))
+			if (check_player(data->map.map[y][x], y, x, &data->player))
 				return (print_err(ERR_DOUBLE_PLAYER));
-			if (check_arround(map->map, x, y))
+			if (check_arround(data->map.map, x, y))
 				return (print_err(ERR_INVALID_MAP));
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	print_player_info(&map->player);
-	if (!map->player.x)
+	print_player_info(&data->player);
+	if (!data->player.x)
 		return (print_err(ERR_NO_PLAYER));
 	return (0);
 }
