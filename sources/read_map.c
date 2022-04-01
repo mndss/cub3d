@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:29:49 by guferrei          #+#    #+#             */
-/*   Updated: 2022/03/31 15:48:21 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:40:33 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ char	**read_map(char *filename, int n_lines)
 	{
 		gnl = get_next_line(fd, &map[count]);
 		if (*map[count] == '\0')
+		{
 			free(map[count]);
+			map[count] = NULL;
+		}
 		else
 			count++;
 	}
@@ -79,7 +82,7 @@ int	get_map(char **map, t_map_info *map_info, int map_size)
 	count_matrix = 6;
 	count_map = 0;
 	map_info->map = (char **)ft_calloc((map_size + 1), sizeof(char *));
-	while (map[count_matrix])
+	while (count_map < map_size)
 	{
 		map_info->map[count_map] = ft_strdup(map[count_matrix]);
 		count_map++;

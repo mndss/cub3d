@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_config.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 20:16:30 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/01 16:12:33 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:15:01 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ char	*get_textures(char *prefix, char **map)
 	int		count;
 	char	*path;
 	char	**temp;
-	size_t	prefix_size;
 
 	count = 0;
-	prefix_size = ft_strlen(prefix);
 	while (count < 6)
 	{
-		if (!ft_strncmp(prefix, map[count], prefix_size))
+		if (!ft_strncmp(prefix, map[count], 2))
 		{
 			temp = ft_split(map[count], ' ');
 			if (!temp[1] || temp[2])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:26:33 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/01 16:07:03 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:40:44 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	invalid_args(int argc, const char *map)
 
 int	check_map_info(t_map_info *map)
 {
+	if (!map->map)
+		return (print_err(ERR_INVALID_MAP));
 	if (map->color_c == -1 || map->color_f == -1)
 		return (print_err(ERR_INVALID_COLOR));
 	return (0);

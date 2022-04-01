@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:56:00 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/01 16:11:38 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:45:28 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	check_map(t_data *data)
 
 	x = 0;
 	y = 0;
+	if (!*data->map.map)
+		return (print_err(ERR_INVALID_MAP));
 	while (data->map.map[y])
 	{
 		while (data->map.map[y][x])
