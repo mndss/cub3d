@@ -1,7 +1,7 @@
 #ifndef CUB3D_H
 
 # define CUB3D_H
-# define ERROR_SIZE 6
+# define ERROR_SIZE 7
 # define PI 3.141592
 
 # include <mlx.h>
@@ -24,6 +24,8 @@ typedef struct s_map_info {
 	char		*ea;
 	char		*f;
 	char		*c;
+	int			color_f;
+	int			color_c;
 	char		**map;
 } t_map_info;
 
@@ -42,12 +44,14 @@ enum {
 	ERR_NOT_FOUND,
 	ERR_DOUBLE_PLAYER,
 	ERR_NO_PLAYER,
-	ERR_INVALID_MAP
+	ERR_INVALID_MAP,
+	ERR_INVALID_COLOR
 };
 
 //UTILS
 void	free_matrix(char **ptr);
 int		print_err(int msg);
+int		set_colors(char *str_color);
 
 //CHECKING ERRORS
 int	ft_setup(int argc, char *argv[], t_data *data);

@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:56:00 by guferrei          #+#    #+#             */
-/*   Updated: 2022/03/31 17:44:44 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:11:38 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	check_map(t_data *data)
 		x = 0;
 		y++;
 	}
-	print_player_info(&data->player);
 	if (!data->player.x)
 		return (print_err(ERR_NO_PLAYER));
 	return (0);
