@@ -32,12 +32,14 @@ HEADER = $(addprefix $(INCLUDES_PATH)/,$(HEADER_FILE))
 SOURCES_FILES =	main.c \
 				handle_args.c \
 				read_map.c \
-				temp.c \
 				utils.c \
 				get_map_config.c \
 				create_image.c \
 				check_map.c \
-				set_game.c
+				set_game.c \
+				cast.c \
+				cast_utils.c \
+				# temp.c 
 
 SOURCES = $(addprefix $(SOURCES_PATH)/,$(SOURCES_FILES))
 
