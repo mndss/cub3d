@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:49:31 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/01 15:03:30 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:00:13 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,5 @@
 int	game_config(t_data *data)
 {
 	data->fov_angle = 60 * PI / 180;
-	data->pxl_p_ray = 1;
 	return (0);
 }
