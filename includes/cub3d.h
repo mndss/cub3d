@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/06 18:31:42 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/06 19:13:20 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	get_info(char **map, t_map_info *map_info, int map_size);
 int		get_map(char **map, t_map_info *map_info, int map_size);
 
 //CASTING RAYS
+void	create_rays(t_data *data);
 float	normalize_angle(float angle);
 void	init_ray(t_rays *ray);
 bool	is_wall(t_cord *hit, bool up, bool left, char **map);

@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:57:29 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/06 18:47:56 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/06 20:11:34 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	is_wall(t_cord *hit, bool up, bool left, char **map)
 		auxx--;
 	x = floor(auxx / TILE_SIZE);
 	y = floor(auxy / TILE_SIZE);
-	if (map[y][x] == '0')
+	if (map[y][x] != '1')
 		return (0);
 	else
 		return (1);

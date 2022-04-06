@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:06:30 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/06 18:56:11 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/06 19:53:41 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	find_step_horz(t_cord *step, t_rays *ray)
 
 int	find_wall_horz(t_rays *ray, t_hits *hits, char **map, t_dist *horz)
 {
-	while (hits->next_hit.x >= 0 && hits->next_hit.x <= 8 * TILE_SIZE
-		&& hits->next_hit.y >= 0 && hits->next_hit.y <= 8 * TILE_SIZE
+	while (hits->next_hit.x >= 0 && hits->next_hit.x <= 7 * TILE_SIZE
+		&& hits->next_hit.y >= 0 && hits->next_hit.y <= 7 * TILE_SIZE
 	)
 	{
 		if (is_wall(&hits->next_hit, ray->is_up, false, map))
@@ -58,10 +58,6 @@ void	horz_hit(t_dist *horz, t_rays *ray, t_player *player, char **map)
 	horz->dist = MAX_INT;
 	find_intercept_horz(&hits_horz.intercept, ray, player);
 	find_step_horz(&hits_horz.step, ray);
-	printf("intercept x:%d\n", hits_horz.intercept.x);
-	printf("intercept y:%d\n", hits_horz.intercept.y);
-	printf("step x:%d\n", hits_horz.step.x);
-	printf("step y:%d\n", hits_horz.step.y);
 	hits_horz.next_hit.x = hits_horz.intercept.x;
 	hits_horz.next_hit.y = hits_horz.intercept.y;
 	if (find_wall_horz(ray, &hits_horz, map, horz))
