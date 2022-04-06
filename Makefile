@@ -40,6 +40,7 @@ SOURCES_FILES =	main.c \
 				cast.c \
 				cast_utils.c \
 				find_vert_hits.c \
+				find_horz_hits.c \
 				# temp.c 
 
 SOURCES = $(addprefix $(SOURCES_PATH)/,$(SOURCES_FILES))

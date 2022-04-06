@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:42:10 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/06 16:05:51 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:44:50 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,34 @@ void	find_step_vert(t_cord *step, t_rays *ray)
 		step->y *= -1;
 }
 
-void	vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map)
+int	find_wall_vert(t_rays *ray, t_hits *hits, char **map, t_dist *vert)
 {
-	t_cord	intercept;
-	t_cord	step;
-	t_cord	next_hit;
-
-	vert->dist = MAX_INT;
-	next_hit.x = intercept.x;
-	next_hit.y = intercept.y;
-	while (next_hit.x >= 0 && next_hit.x <= 8 * TILE_SIZE
-		&& next_hit.y >= 0 && next_hit.y <= 8 * TILE_SIZE
+	while (hits->next_hit.x >= 0 && hits->next_hit.x <= 8 * TILE_SIZE
+		&& hits->next_hit.y >= 0 && hits->next_hit.y <= 8 * TILE_SIZE
 	)
 	{
-		if (is_wall(&next_hit, false, ray->is_left, map))
+		if (is_wall(&hits->next_hit, false, ray->is_left, map))
 		{
-			vert->x = next_hit.x;
-			vert->y = next_hit.y;
-			vert->dist = find_distance(player->x, player->y,
-					vert->x, vert->y);
+			vert->x = hits->next_hit.x;
+			vert->y = hits->next_hit.y;
 			break ;
 		}
 		else
 		{
-			next_hit.x += step.x;
-			next_hit.y += step.y;
+			hits->next_hit.x += hits->step.x;
+			hits->next_hit.y += hits->step.y;
 		}
-	}
+	}	
+}
+
+void	vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map)
+{
+	t_hits	hits;
+
+	vert->dist = MAX_INT;
+	hits.next_hit.x = hits.intercept.x;
+	hits.next_hit.y = hits.intercept.y;
+	if (find_wall_vert(ray, &hits, map, vert))
+		vert->dist = find_distance(player->x, player->y,
+				vert->x, vert->y);
 }

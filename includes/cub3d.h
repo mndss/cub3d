@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/06 16:05:01 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:31:42 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ typedef struct s_player {
 	int		x;
 	float	direction;
 }	t_player;
+
+typedef struct s_hits {
+	t_cord	intercept;
+	t_cord	step;
+	t_cord	next_hit;
+}	t_hits;
 
 typedef struct s_rays
 {
@@ -130,5 +136,5 @@ int		game_config(t_data *data);
 void	vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map);
 void	find_intercept_vert(t_cord *intercept, t_rays *ray, t_player *player);
 void	find_step_vert(t_cord *step, t_rays *ray);
-
+void	horz_hit(t_dist *horz, t_rays *ray, t_player *player, char **map);
 #endif
