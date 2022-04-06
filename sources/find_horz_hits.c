@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:06:30 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/06 18:44:26 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:56:11 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	find_intercept_horz(t_cord *intercept, t_rays *ray, t_player *player)
 	intercept->y = floor(player->y / TILE_SIZE) * TILE_SIZE;
 	if (ray->is_down)
 		intercept->y += TILE_SIZE;
-	intercept->x = player->x + (intercept->y - player->y) / \
-		tan(ray->ray_angle);
+	intercept->x = player->x + (intercept->y - player->y) / tan(ray->ray_angle);
 }
 
 void	find_step_horz(t_cord *step, t_rays *ray)
@@ -54,14 +53,18 @@ int	find_wall_horz(t_rays *ray, t_hits *hits, char **map, t_dist *horz)
 
 void	horz_hit(t_dist *horz, t_rays *ray, t_player *player, char **map)
 {
-	t_hits	hits;
+	t_hits	hits_horz;
 
 	horz->dist = MAX_INT;
-	find_intercept_horz(&hits.intercept, ray, player);
-	find_step_horz(&hits.step, ray);
-	hits.next_hit.x = hits.intercept.x;
-	hits.next_hit.y = hits.intercept.y;
-	if (find_wall_horz(ray, &hits, map, horz))
+	find_intercept_horz(&hits_horz.intercept, ray, player);
+	find_step_horz(&hits_horz.step, ray);
+	printf("intercept x:%d\n", hits_horz.intercept.x);
+	printf("intercept y:%d\n", hits_horz.intercept.y);
+	printf("step x:%d\n", hits_horz.step.x);
+	printf("step y:%d\n", hits_horz.step.y);
+	hits_horz.next_hit.x = hits_horz.intercept.x;
+	hits_horz.next_hit.y = hits_horz.intercept.y;
+	if (find_wall_horz(ray, &hits_horz, map, horz))
 		horz->dist = find_distance(player->x,
 				player->y, horz->x, horz->y);
 }

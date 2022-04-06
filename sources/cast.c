@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 16:00:42 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/06 18:06:55 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:53:19 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int	cast_ray(t_rays *ray, t_player *player, char **map)
 	horz.y = 0;
 	horz.dist = 0;
 	init_ray(ray);
+	printf("HORIZONTAL==================================\n");
 	horz_hit(&horz, ray, player, map);
+	printf("VERTICAL==================================\n");
 	vert_hit(&vert, ray, player, map);
 	compare_hits(&horz, &vert, ray);
 	return (0);
