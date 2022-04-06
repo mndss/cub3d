@@ -48,7 +48,7 @@ OBJECTS = $(addprefix $(OBJECTS_PATH)/,$(subst .c,.o,$(SOURCES_FILES)))
 all: $(NAME)
 
 $(NAME): build_libft build_mlx $(OBJECTS) $(HEADER)
-	$(CC) $(CFLAGS) -g $(OBJECTS) -o $(NAME) -L $(ARCHIVES_PATH) -I $(EXTERNAL_LIBS) $(INTERNAL_LIBS)
+	$(CC) $(CFLAGS) -g $(OBJECTS) -o $(NAME) -L $(ARCHIVES_PATH) $(EXTERNAL_LIBS) $(INTERNAL_LIBS)
 
 $(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.c $(HEADER)
 	$(SAFE_MAKEDIR) $(OBJECTS_PATH)

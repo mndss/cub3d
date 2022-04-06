@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:57:29 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/05 19:52:49 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:30:47 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_ray(t_rays *ray)
 	ray->is_right = (ray->ray_angle < 0.5 * PI
 			|| ray->ray_angle > 1.5 * PI);
 	ray->is_left = !ray->is_right;
+	printf("angle %f\nup %d\ndown %d\nleft %d\nright %d\n", ray->ray_angle, ray->is_up, ray->is_down, ray->is_left, ray->is_right);
 }
 
 bool	is_wall(t_cord *hit, bool up, bool left, char **map)
@@ -37,16 +38,12 @@ bool	is_wall(t_cord *hit, bool up, bool left, char **map)
 	int	auxx;
 	int	auxy;
 
+	auxx = hit->x;
+	auxy = hit->y;
 	if (up)
-	{
-		auxy = hit->y - 1;
-		auxx = hit->x;
-	}
+		auxy--;
 	if (left)
-	{
-		auxx = hit->x - 1;
-		auxy = hit->y;
-	}
+		auxx--;
 	x = floor(auxx / TILE_SIZE);
 	y = floor(auxy / TILE_SIZE);
 	if (map[y][x] == '0')

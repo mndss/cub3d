@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 16:00:42 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/05 19:33:55 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:30:59 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	horz_hit(t_dist *horz, t_rays *ray, t_player *player, char **map)
 		step.x *= -1;
 	next_hit.x = intercept.x;
 	next_hit.y = intercept.y;
+	printf("HORZ\nxstep %d\nystep %d\nxintercept %d\nyintercept %d\n", step.x, step.y, intercept.x, intercept.y);
 	while (next_hit.x >= 0 && next_hit.x <= 8 * TILE_SIZE
 			&& next_hit.y >= 0 && next_hit.y <= 8 * TILE_SIZE
 	)
@@ -77,6 +78,7 @@ void vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map)
 		step.y *= -1;
 	next_hit.x = intercept.x;
 	next_hit.y = intercept.y;
+	printf("VERT\nxstep %d\nystep %d\nxintercept %d\nyintercept %d\n", step.x, step.y, intercept.x, intercept.y);
 	while (next_hit.x >= 0 && next_hit.x <= 8 * TILE_SIZE
 			&& next_hit.y >= 0 && next_hit.y <= 8 * TILE_SIZE
 	)
@@ -97,7 +99,8 @@ void vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map)
 		vert->dist = find_distance(player->x, player->y,
 			vert->x, vert->y);
 	else
-		return ;
+		vert->dist = MAX_INT;
+	return ;
 }
 
 void	compare_hits(t_dist *horz, t_dist *vert, t_rays *ray)
