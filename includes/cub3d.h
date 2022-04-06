@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/05 15:58:42 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:05:01 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,4 +125,10 @@ int		create_images(t_map_info *map_info);
 
 // GAME CONFIG
 int		game_config(t_data *data);
+
+//FIND VERT INTERCEPTIONS
+void	vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map);
+void	find_intercept_vert(t_cord *intercept, t_rays *ray, t_player *player);
+void	find_step_vert(t_cord *step, t_rays *ray);
+
 #endif

@@ -39,6 +39,7 @@ SOURCES_FILES =	main.c \
 				set_game.c \
 				cast.c \
 				cast_utils.c \
+				find_vert_hits.c \
 				# temp.c 
 
 SOURCES = $(addprefix $(SOURCES_PATH)/,$(SOURCES_FILES))

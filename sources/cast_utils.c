@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:57:29 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/06 15:30:47 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:40:35 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	init_ray(t_rays *ray)
 	ray->is_right = (ray->ray_angle < 0.5 * PI
 			|| ray->ray_angle > 1.5 * PI);
 	ray->is_left = !ray->is_right;
-	printf("angle %f\nup %d\ndown %d\nleft %d\nright %d\n", ray->ray_angle, ray->is_up, ray->is_down, ray->is_left, ray->is_right);
 }
 
 bool	is_wall(t_cord *hit, bool up, bool left, char **map)
