@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 16:00:42 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/05 17:33:34 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/05 19:33:55 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	horz_hit(t_dist *horz, t_rays *ray, t_player *player, char **map)
 	intercept.y = floor(player->y / TILE_SIZE) * TILE_SIZE;
 	if (ray->is_down)
 		intercept.y += TILE_SIZE;
-	intercept.x = player->x + (intercept.y - player->y)
-		/ tan(ray->ray_angle);
+	intercept.x = player->x + (intercept.y - player->y) / tan(ray->ray_angle);
 	step.y = TILE_SIZE;
 	if (ray->is_up)
 		step.y *= -1;
@@ -33,8 +32,9 @@ void	horz_hit(t_dist *horz, t_rays *ray, t_player *player, char **map)
 		step.x *= -1;
 	next_hit.x = intercept.x;
 	next_hit.y = intercept.y;
-	while (next_hit.x >= 0 && next_hit.x <= WIN_WIDHT
-		&& next_hit.y >= 0 && next_hit.y <= WIN_HEIGHT)
+	while (next_hit.x >= 0 && next_hit.x <= 8 * TILE_SIZE
+			&& next_hit.y >= 0 && next_hit.y <= 8 * TILE_SIZE
+	)
 	{
 		if (is_wall(&next_hit, ray->is_up, false, map))
 		{
@@ -65,7 +65,7 @@ void vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map)
 	bool found_hit;
 
 	found_hit = false;
-	intercept.x = floor((player->x / TILE_SIZE) * TILE_SIZE);
+	intercept.x = floor(player->x / TILE_SIZE) * TILE_SIZE;
 	if (ray->is_right)
 		intercept.x += TILE_SIZE;
 	intercept.y = player->y + (intercept.x - player->x) * tan(ray->ray_angle);
@@ -77,8 +77,9 @@ void vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map)
 		step.y *= -1;
 	next_hit.x = intercept.x;
 	next_hit.y = intercept.y;
-	while (next_hit.x >= 0 && next_hit.x <= WIN_WIDHT
-		&& next_hit.y >= 0 && next_hit.y <= WIN_HEIGHT)
+	while (next_hit.x >= 0 && next_hit.x <= 8 * TILE_SIZE
+			&& next_hit.y >= 0 && next_hit.y <= 8 * TILE_SIZE
+	)
 	{
 		if (is_wall(&next_hit, false, ray->is_left, map))
 		{
@@ -88,8 +89,8 @@ void vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map)
 			break ;
 		}
 		else {
-			vert->x += step.x;
-			vert->y += step.y;
+			next_hit.x += step.x;
+			next_hit.y += step.y;
 		}
 	}
 	if (found_hit)
@@ -103,12 +104,14 @@ void	compare_hits(t_dist *horz, t_dist *vert, t_rays *ray)
 {
 	if (vert->dist < horz->dist)
 	{
+		printf("Is vert\n");
 		ray->wall_hit_x = vert->x;
 		ray->wall_hit_y = vert->y;
 		ray->distance = vert->dist;
 	}
 	else
 	{
+		printf("Is horz\n");
 		ray->wall_hit_x = horz->x;
 		ray->wall_hit_y = horz->y;
 		ray->distance = horz->dist;
@@ -120,6 +123,9 @@ int	cast_ray(t_rays *ray, t_player *player, char **map)
 	t_dist	horz;
 	t_dist	vert;
 
+	horz.x = 0;
+	horz.y = 0;
+	horz.dist = 0;
 	init_ray(ray);
 	horz_hit(&horz, ray, player, map);
 	vert_hit(&vert, ray, player, map);

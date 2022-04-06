@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:57:29 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/05 16:00:03 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/05 19:52:49 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,21 @@ bool	is_wall(t_cord *hit, bool up, bool left, char **map)
 {
 	int	x;
 	int	y;
+	int	auxx;
+	int	auxy;
 
 	if (up)
-		hit->y -= 1;
+	{
+		auxy = hit->y - 1;
+		auxx = hit->x;
+	}
 	if (left)
-		hit->x -= 1;
-	x = floor(hit->x / TILE_SIZE);
-	y = floor(hit->y / TILE_SIZE);
+	{
+		auxx = hit->x - 1;
+		auxy = hit->y;
+	}
+	x = floor(auxx / TILE_SIZE);
+	y = floor(auxy / TILE_SIZE);
 	if (map[y][x] == '0')
 		return (0);
 	else

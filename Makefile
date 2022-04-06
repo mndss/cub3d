@@ -4,7 +4,7 @@ CC = clang
 CFLAGS = -Wall -Werror -Wextra
 
 INTERNAL_LIBS = -lmlx -lft
-EXTERNAL_LIBS = -lm -lXext -lX11 
+EXTERNAL_LIBS = -lXext -lX11 -lm
 
 LIBFT = libft.a
 LIBFT_PATH = $(LIBS_PATH)/libft
