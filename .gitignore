@@ -1,0 +1,7 @@
+cub3D
+archives
+objects
+libs/libft/*.o
+libs/libft/libft.a
+sources/temp.c
+test.sh

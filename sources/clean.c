@@ -1,30 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 16:57:10 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/07 17:09:35 by guferrei         ###   ########.fr       */
+/*   Created: 2022/04/07 17:09:23 by guferrei          #+#    #+#             */
+/*   Updated: 2022/04/07 17:10:51 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	main(int argc, char *argv[])
+void	free_n_null(void *ptr)
 {
-	t_data	data;
-
-	ft_memset(&data, '\0', sizeof(t_data));
-	if (ft_setup(argc, argv, &data))
+	if (ptr)
 	{
-		ft_clean(&data.map);
-		return (1);
+		free(ptr);
+		ptr = NULL;
 	}
-	game_config(&data);
-	create_rays(&data);
-	//render_walls(&data);
-	ft_clean(&data.map);
-	return (0);
+}
+
+void	free_matrix(char **ptr)
+{
+	int	count;
+
+	count = 0;
+	while (ptr[count])
+	{
+		free_n_null(ptr[count]);
+		count++;
+	}
+	free_n_null(ptr);
+}
+
+void	ft_clean(t_map_info *map)
+{
+	if (map->map)
+		free_matrix(map->map);
+	free_n_null(map->no);
+	free_n_null(map->so);
+	free_n_null(map->we);
+	free_n_null(map->ea);
+	free_n_null(map->f);
+	free_n_null(map->c);
 }

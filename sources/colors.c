@@ -1,46 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 15:36:40 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/01 16:39:32 by guferrei         ###   ########.fr       */
+/*   Created: 2022/04/07 16:46:50 by guferrei          #+#    #+#             */
+/*   Updated: 2022/04/07 17:19:22 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	print_err(int msg)
-{
-	char	*err[ERROR_SIZE];
-
-	err[ERR_ARGS] = "Error\nInvalid numbers of arguments\n";
-	err[ERR_INVALID_EXT] = "Error\nInvalid extension from map\n";
-	err[ERR_NOT_FOUND] = "Error\nFile not found\n";
-	err[ERR_DOUBLE_PLAYER] = "Error\nMap have two or more players\n";
-	err[ERR_NO_PLAYER] = "Error\nMap don't have player\n";
-	err[ERR_INVALID_MAP] = "Error\nInvalid map\n";
-	err[ERR_INVALID_COLOR] = "Error\nInvalid color\n";
-	ft_putstr_fd(err[msg], 2);
-	return (msg + 1);
-}
-
-void	free_matrix(char **ptr)
-{
-	int	count;
-
-	count = 0;
-	while (ptr[count])
-	{
-		free(ptr[count]);
-		count++;
-	}
-	free(ptr);
-}
-
-int	rgb_to_decimal(char **colors)
+static int	rgb_to_decimal(char **colors)
 {
 	int	r;
 	int	g;
@@ -61,12 +33,35 @@ int	set_colors(char *str_color)
 	int		i;
 
 	i = 0;
+	if (!str_color)
+		return (-1);
 	colors = ft_split(str_color, ',');
 	while (colors[i])
 		i++;
 	if (i != 3)
+	{
+		free_matrix(colors);
 		return (-1);
+	}
 	dec_color = rgb_to_decimal(colors);
 	free_matrix(colors);
 	return (dec_color);
+}
+
+char	*get_colors(char *prefix, char **map)
+{
+	int		count;
+	char	*values;
+
+	count = 0;
+	while (count < 6)
+	{
+		if (!ft_strncmp(prefix, map[count], 1))
+		{
+			values = ft_strdup(map[count] + 1);
+			return (values);
+		}
+		count++;
+	}
+	return (NULL);
 }

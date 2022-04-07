@@ -4,7 +4,7 @@ CC = clang
 CFLAGS = -Wall -Werror -Wextra
 
 INTERNAL_LIBS = -lmlx -lft
-EXTERNAL_LIBS = -lm -lXext -lX11 
+EXTERNAL_LIBS = -lXext -lX11 -lm
 
 LIBFT = libft.a
 LIBFT_PATH = $(LIBS_PATH)/libft
@@ -32,12 +32,19 @@ HEADER = $(addprefix $(INCLUDES_PATH)/,$(HEADER_FILE))
 SOURCES_FILES =	main.c \
 				handle_args.c \
 				read_map.c \
-				temp.c \
-				utils.c \
+				error.c \
 				get_map_config.c \
 				create_image.c \
 				check_map.c \
-				set_game.c
+				set_game.c \
+				cast.c \
+				cast_utils.c \
+				find_vert_hits.c \
+				find_horz_hits.c \
+				render_walls.c \
+				colors.c \
+				clean.c
+				# temp.c 
 
 SOURCES = $(addprefix $(SOURCES_PATH)/,$(SOURCES_FILES))
 
@@ -46,7 +53,7 @@ OBJECTS = $(addprefix $(OBJECTS_PATH)/,$(subst .c,.o,$(SOURCES_FILES)))
 all: $(NAME)
 
 $(NAME): build_libft build_mlx $(OBJECTS) $(HEADER)
-	$(CC) $(CFLAGS) -g $(OBJECTS) -o $(NAME) -L $(ARCHIVES_PATH) -I $(EXTERNAL_LIBS) $(INTERNAL_LIBS)
+	$(CC) $(CFLAGS) -g $(OBJECTS) -o $(NAME) -L $(ARCHIVES_PATH) $(EXTERNAL_LIBS) $(INTERNAL_LIBS)
 
 $(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.c $(HEADER)
 	$(SAFE_MAKEDIR) $(OBJECTS_PATH)

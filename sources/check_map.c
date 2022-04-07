@@ -6,20 +6,20 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:56:00 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/01 16:45:28 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:20:01 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	check_direction(char direction)
+static int	check_direction(char direction)
 {
 	if (direction && direction != ' ')
 		return (0);
 	return (1);
 }
 
-int	check_arround(char **map, int x, int y)
+static int	check_arround(char **map, int x, int y)
 {
 	if (map[y][x] == '1' || map[y][x] == ' ')
 		return (0);
@@ -40,7 +40,7 @@ int	check_arround(char **map, int x, int y)
 	return (1);
 }
 
-float	find_direction(char direction)
+static float	find_direction(char direction)
 {
 	if (direction == 'N')
 		return (PI * 1.5);
@@ -52,7 +52,7 @@ float	find_direction(char direction)
 		return (0);
 }
 
-int	check_player(char cord, int y, int x, t_player *player)
+static int	check_player(char cord, int y, int x, t_player *player)
 {
 	if (cord == 'N' || cord == 'S' || cord == 'W' || cord == 'E')
 	{
