@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cast.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 16:00:42 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 15:17:04 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:20:29 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	compare_hits(t_dist *horz, t_dist *vert, t_rays *ray)
+static void	compare_hits(t_dist *horz, t_dist *vert, t_rays *ray)
 {
 	if (vert->dist < horz->dist)
 	{
@@ -28,18 +28,19 @@ void	compare_hits(t_dist *horz, t_dist *vert, t_rays *ray)
 	}
 }
 
-int	find_wall_height(t_rays *ray, t_data *data)
+static int	find_wall_height(t_rays *ray, t_data *data)
 {
 	float	dst_proj_plane;
-	float	correct_wall_height;
+	float	fix_wall_height;
 
-	correct_wall_height = ray->distance * cos(ray->ray_angle - data->player.direction);
+	fix_wall_height = ray->distance \
+		* cos(ray->ray_angle - data->player.direction);
 	dst_proj_plane = (WIN_WIDHT / 2) / tan(data->fov_angle / 2);
-	ray->wall_height = (TILE_SIZE / correct_wall_height) * dst_proj_plane;
+	ray->wall_height = (TILE_SIZE / fix_wall_height) * dst_proj_plane;
 	return (0);
 }
 
-int	cast_ray(t_rays *ray, t_data *data)
+static int	cast_ray(t_rays *ray, t_data *data)
 {
 	t_dist	horz;
 	t_dist	vert;

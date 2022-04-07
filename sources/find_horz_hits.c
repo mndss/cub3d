@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   find_horz_hits.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:06:30 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/07 15:29:02 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:23:22 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	find_intercept_horz(t_cord *intercept, t_rays *ray, t_player *player)
+static void	find_intercept_horz(t_cord *intercept, t_rays *ray,
+			t_player *player)
 {
 	intercept->y = floor(player->y / TILE_SIZE) * TILE_SIZE;
 	if (ray->is_down)
@@ -20,7 +21,7 @@ void	find_intercept_horz(t_cord *intercept, t_rays *ray, t_player *player)
 	intercept->x = player->x + (intercept->y - player->y) / tan(ray->ray_angle);
 }
 
-void	find_step_horz(t_cord *step, t_rays *ray)
+static void	find_step_horz(t_cord *step, t_rays *ray)
 {
 	step->y = TILE_SIZE;
 	if (ray->is_up)
@@ -30,7 +31,7 @@ void	find_step_horz(t_cord *step, t_rays *ray)
 		step->x *= -1;
 }
 
-int	find_wall_horz(t_rays *ray, t_hits *hits, char **map, t_dist *horz)
+static int	find_wall_horz(t_rays *ray, t_hits *hits, char **map, t_dist *horz)
 {
 	while (hits->next_hit.x >= 0 && hits->next_hit.x <= 7 * TILE_SIZE
 		&& hits->next_hit.y >= 0 && hits->next_hit.y <= 7 * TILE_SIZE

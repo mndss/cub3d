@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:39:31 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/07 15:39:41 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:00:47 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	draw_line(t_data *data, int ray_num)
 		mlx_pixel_put(data->mlx, data->win, ray_num, begin_x, 0xFFFFFF);
 		begin_x++;
 	}
-	return (0);	
+	return (0);
 }
 
 int	render_walls(t_data *data)

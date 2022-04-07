@@ -6,13 +6,13 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:29:49 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/01 16:40:33 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:17:53 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	get_fd(char *filename)
+static int	get_fd(char *filename)
 {
 	return (open(filename, O_RDONLY));
 }
@@ -65,11 +65,6 @@ char	**read_map(char *filename, int n_lines)
 		}
 		else
 			count++;
-	}
-	if (gnl == -1)
-	{
-		free_matrix(map);
-		return (NULL);
 	}
 	return (map);
 }

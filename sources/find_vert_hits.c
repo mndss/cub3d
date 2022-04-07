@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   find_vert_hits.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:42:10 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/07 15:28:39 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:23:47 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	find_intercept_vert(t_cord *intercept, t_rays *ray, t_player *player)
+static void	find_intercept_vert(t_cord *intercept, t_rays *ray,
+			t_player *player)
 {
 	intercept->x = floor(player->x / TILE_SIZE) * TILE_SIZE;
 	if (ray->is_right)
@@ -20,7 +21,7 @@ void	find_intercept_vert(t_cord *intercept, t_rays *ray, t_player *player)
 	intercept->y = player->y + (intercept->x - player->x) * tan(ray->ray_angle);
 }
 
-void	find_step_vert(t_cord *step, t_rays *ray)
+static void	find_step_vert(t_cord *step, t_rays *ray)
 {
 	step->x = TILE_SIZE;
 	if (ray->is_left)
@@ -30,7 +31,7 @@ void	find_step_vert(t_cord *step, t_rays *ray)
 		step->y *= -1;
 }
 
-int	find_wall_vert(t_rays *ray, t_hits *hits, char **map, t_dist *vert)
+static int	find_wall_vert(t_rays *ray, t_hits *hits, char **map, t_dist *vert)
 {
 	while (hits->next_hit.x >= 0 && hits->next_hit.x <= 7 * TILE_SIZE
 		&& hits->next_hit.y >= 0 && hits->next_hit.y <= 7 * TILE_SIZE
@@ -40,7 +41,7 @@ int	find_wall_vert(t_rays *ray, t_hits *hits, char **map, t_dist *vert)
 		{
 			vert->x = hits->next_hit.x;
 			vert->y = hits->next_hit.y;
-			return (1) ;
+			return (1);
 		}
 		else
 		{

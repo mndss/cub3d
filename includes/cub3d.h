@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 15:43:22 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:22:23 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,26 +102,24 @@ enum {
 void	free_matrix(char **ptr);
 int		print_err(int msg);
 int		set_colors(char *str_color);
+void	ft_clean(t_map_info *map);
 
 //CHECKING ERRORS
 int		ft_setup(int argc, char *argv[], t_data *data);
-int		invalid_args(int argc, const char *map);
 int		check_map(t_data *data);
 
 //READ MAP
 int		count_lines(char *filename);
 char	**read_map(char *filename, int n_lines);
-char	*get_textures(char *prefix, char **map);
+char	*get_colors(char *prefix, char **map);
 void	get_info(char **map, t_map_info *map_info, int map_size);
 int		get_map(char **map, t_map_info *map_info, int map_size);
 
 //CASTING RAYS
 void	create_rays(t_data *data);
-float	normalize_angle(float angle);
 void	init_ray(t_rays *ray);
 bool	is_wall(t_cord *hit, bool up, bool left, char **map);
 float	find_distance(int px, int py, int wx, int wy);
-int		cast_ray(t_rays *ray, t_data *data);
 
 //TEMP
 void	print_map(char **map);
@@ -134,12 +132,10 @@ int		create_images(t_map_info *map_info);
 // GAME CONFIG
 int		game_config(t_data *data);
 
-//FIND VERT INTERCEPTIONS
+//FIND INTERCEPTIONS
 void	vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map);
-void	find_intercept_vert(t_cord *intercept, t_rays *ray, t_player *player);
-void	find_step_vert(t_cord *step, t_rays *ray);
 void	horz_hit(t_dist *horz, t_rays *ray, t_player *player, char **map);
 
 //RENDER WALLS
-int	render_walls(t_data *data);
+int		render_walls(t_data *data);
 #endif
