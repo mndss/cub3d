@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:42:10 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/06 19:53:12 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:28:39 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map)
 {
 	t_hits	hits_vert;
 
-	vert->dist = MAX_INT;
+	vert->dist = (float)MAX_INT;
 	find_intercept_vert(&hits_vert.intercept, ray, player);
 	find_step_vert(&hits_vert.step, ray);
 	hits_vert.next_hit.x = hits_vert.intercept.x;

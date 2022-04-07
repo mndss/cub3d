@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:39:31 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/07 15:11:30 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:39:41 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	draw_line(t_data *data, int ray_num)
 {
-	int	begin_x;
-	int	end_x;
+	float	begin_x;
+	float	end_x;
 
 	begin_x = (WIN_HEIGHT / 2) - (data->rays[ray_num].wall_height / 2);
 	end_x = (WIN_HEIGHT / 2) + (data->rays[ray_num].wall_height / 2);

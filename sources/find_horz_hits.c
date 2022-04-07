@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:06:30 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/06 19:53:41 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:29:02 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	horz_hit(t_dist *horz, t_rays *ray, t_player *player, char **map)
 {
 	t_hits	hits_horz;
 
-	horz->dist = MAX_INT;
+	horz->dist = (float)MAX_INT;
 	find_intercept_horz(&hits_horz.intercept, ray, player);
 	find_step_horz(&hits_horz.step, ray);
 	hits_horz.next_hit.x = hits_horz.intercept.x;

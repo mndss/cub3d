@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 14:59:27 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:43:22 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@
 # include <math.h>
 
 typedef struct s_cord {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 }	t_cord;
 
 typedef struct s_dist {
-	int	x;
-	int	y;
-	int	dist;
+	float	x;
+	float	y;
+	float	dist;
 }	t_dist;
 
 typedef struct s_player {
@@ -55,10 +55,10 @@ typedef struct s_hits {
 typedef struct s_rays
 {
 	float		ray_angle;
-	int			wall_hit_x;
-	int			wall_hit_y;
-	int			distance;
-	int			wall_height;
+	float		wall_hit_x;
+	float		wall_hit_y;
+	float		distance;
+	float		wall_height;
 	bool		hit_vert;
 	bool		is_down;
 	bool		is_up;
@@ -120,7 +120,7 @@ void	create_rays(t_data *data);
 float	normalize_angle(float angle);
 void	init_ray(t_rays *ray);
 bool	is_wall(t_cord *hit, bool up, bool left, char **map);
-int		find_distance(int px, int py, int wx, int wy);
+float	find_distance(int px, int py, int wx, int wy);
 int		cast_ray(t_rays *ray, t_data *data);
 
 //TEMP

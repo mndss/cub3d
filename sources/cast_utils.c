@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:57:29 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/06 20:11:34 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:43:09 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ bool	is_wall(t_cord *hit, bool up, bool left, char **map)
 		return (1);
 }
 
-int	find_distance(int px, int py, int wx, int wy)
+float	find_distance(int px, int py, int wx, int wy)
 {
-	int	dist;
+	float	dist;
 
 	dist = sqrt((wx - px) * (wx - px) + (wy - py) * (wy - py));
 	return (dist);
