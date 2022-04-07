@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/06 19:13:20 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 14:59:27 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_rays
 	int			wall_hit_x;
 	int			wall_hit_y;
 	int			distance;
+	int			wall_height;
 	bool		hit_vert;
 	bool		is_down;
 	bool		is_up;
@@ -120,7 +121,7 @@ float	normalize_angle(float angle);
 void	init_ray(t_rays *ray);
 bool	is_wall(t_cord *hit, bool up, bool left, char **map);
 int		find_distance(int px, int py, int wx, int wy);
-int		cast_ray(t_rays *ray, t_player *player, char **map);
+int		cast_ray(t_rays *ray, t_data *data);
 
 //TEMP
 void	print_map(char **map);
@@ -138,4 +139,7 @@ void	vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map);
 void	find_intercept_vert(t_cord *intercept, t_rays *ray, t_player *player);
 void	find_step_vert(t_cord *step, t_rays *ray);
 void	horz_hit(t_dist *horz, t_rays *ray, t_player *player, char **map);
+
+//RENDER WALLS
+int	render_walls(t_data *data);
 #endif

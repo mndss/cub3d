@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:57:10 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/06 19:09:36 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 14:59:41 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char *argv[])
 	ft_setup(argc, argv, &data);
 	game_config(&data);
 	create_rays(&data);
+	render_walls(&data);
 	ft_clean(&data.map);
 	return (0);
 }

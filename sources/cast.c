@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 16:00:42 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/06 20:13:34 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:17:04 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,29 @@ void	compare_hits(t_dist *horz, t_dist *vert, t_rays *ray)
 	}
 }
 
-int	cast_ray(t_rays *ray, t_player *player, char **map)
+int	find_wall_height(t_rays *ray, t_data *data)
+{
+	float	dst_proj_plane;
+	float	correct_wall_height;
+
+	correct_wall_height = ray->distance * cos(ray->ray_angle - data->player.direction);
+	dst_proj_plane = (WIN_WIDHT / 2) / tan(data->fov_angle / 2);
+	ray->wall_height = (TILE_SIZE / correct_wall_height) * dst_proj_plane;
+	return (0);
+}
+
+int	cast_ray(t_rays *ray, t_data *data)
 {
 	t_dist	horz;
 	t_dist	vert;
 
-	horz.x = 0;
-	horz.y = 0;
-	horz.dist = 0;
-	vert.x = 0;
-	vert.y = 0;
-	vert.dist = 0;
+	ft_memset(&horz, '\0', sizeof(t_dist));
+	ft_memset(&vert, '\0', sizeof(t_dist));
 	init_ray(ray);
-	horz_hit(&horz, ray, player, map);
-	vert_hit(&vert, ray, player, map);
+	horz_hit(&horz, ray, &data->player, data->map.map);
+	vert_hit(&vert, ray, &data->player, data->map.map);
 	compare_hits(&horz, &vert, ray);
+	find_wall_height(ray, data);
 	return (0);
 }
 
@@ -60,9 +68,7 @@ void	create_rays(t_data *data)
 	while (count < WIN_WIDHT)
 	{
 		data->rays[count].ray_angle = inital_angle + angle_step * count;
-		cast_ray(&data->rays[count], &data->player, data->map.map);
+		cast_ray(&data->rays[count], data);
 		count++;
 	}
-	printf("FIRST RAY DISTANCE: %d\n", data->rays[0].distance);
-	printf("LAST RAY DISTANCE: %d\n", data->rays[WIN_WIDHT - 1].distance);
 }
