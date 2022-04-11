@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 16:00:42 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:20:29 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:40:16 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ void	create_rays(t_data *data)
 	count = 0;
 	angle_step = data->fov_angle / WIN_WIDHT;
 	inital_angle = (data->player.direction - data->fov_angle / 2);
-	data->player.x = 128;
-	data->player.y = 128;
 	while (count < WIN_WIDHT)
 	{
 		data->rays[count].ray_angle = inital_angle + angle_step * count;

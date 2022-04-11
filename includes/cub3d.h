@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/11 15:46:51 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:41:54 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define MAX_INT 2147483647
 # define RIGHT_ARROW 65361
 # define LEFT_ARROW 65363
+# define KEY_W 44
+# define KEY_S 101
 
 # include <mlx.h>
 # include <libft.h>
@@ -52,8 +54,8 @@ typedef struct s_dist {
 }	t_dist;
 
 typedef struct s_player {
-	int		y;
-	int		x;
+	float	y;
+	float	x;
 	int		turn_direction;
 	int		walk_direction;
 	int		move_speed;
