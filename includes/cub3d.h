@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:22:23 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/11 15:46:51 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # define WIN_HEIGHT 600
 # define TILE_SIZE 32
 # define MAX_INT 2147483647
+# define RIGHT_ARROW 65361
+# define LEFT_ARROW 65363
 
 # include <mlx.h>
 # include <libft.h>
@@ -28,6 +30,15 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <math.h>
+
+typedef struct	s_img_addr {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_img_addr;
+
 
 typedef struct s_cord {
 	float	x;
@@ -43,6 +54,10 @@ typedef struct s_dist {
 typedef struct s_player {
 	int		y;
 	int		x;
+	int		turn_direction;
+	int		walk_direction;
+	int		move_speed;
+	int		rotation_speed;
 	float	direction;
 }	t_player;
 
@@ -86,6 +101,7 @@ typedef struct s_data {
 	t_map_info	map;
 	t_player	player;
 	t_rays		rays[WIN_WIDHT];
+	t_img_addr	img_addr;
 }	t_data;
 
 enum {
@@ -138,4 +154,9 @@ void	horz_hit(t_dist *horz, t_rays *ray, t_player *player, char **map);
 
 //RENDER WALLS
 int		render_walls(t_data *data);
+
+//MOVEMENTS
+int	key_press(int keycode, t_data *data);
+int	key_release(int keycode, t_data *data);
+
 #endif

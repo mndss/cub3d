@@ -43,7 +43,8 @@ SOURCES_FILES =	main.c \
 				find_horz_hits.c \
 				render_walls.c \
 				colors.c \
-				clean.c
+				clean.c \
+				key_listener.c \
 				# temp.c 
 
 SOURCES = $(addprefix $(SOURCES_PATH)/,$(SOURCES_FILES))
