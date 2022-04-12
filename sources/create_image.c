@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 20:46:27 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/12 17:00:54 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:27:10 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static void	load_buffer(t_img_addr *img)
 	{
 		while (y < TILE_SIZE)
 		{
-			img->buffer[(TILE_SIZE * y) + x] = (__uint32_t)get_color_pxl(img, x, y);
+			img->buffer[(TILE_SIZE * y) + x] = \
+				(__uint32_t)get_color_pxl(img, x, y);
 			y++;
 		}
 		y = 0;
@@ -63,11 +64,15 @@ static void	load_buffer(t_img_addr *img)
 int	create_images(t_data *data)
 {
 	if (load_imgs(data))
-		return (1); //ERRO DE IMAGEM INVALIDA
+		return (print_err(ERR_INVALID_TEXTURE));
 	load_img_add(&data->textures);
 	load_buffer(&data->textures.no);
 	load_buffer(&data->textures.so);
 	load_buffer(&data->textures.ea);
 	load_buffer(&data->textures.we);
+	mlx_destroy_image(data->mlx, data->textures.no.img);
+	mlx_destroy_image(data->mlx, data->textures.so.img);
+	mlx_destroy_image(data->mlx, data->textures.ea.img);
+	mlx_destroy_image(data->mlx, data->textures.we.img);
 	return (0);
 }

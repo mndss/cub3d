@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:36:40 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:09:46 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:59:04 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	print_err(int msg)
 	err[ERR_NO_PLAYER] = "Error\nMap don't have player\n";
 	err[ERR_INVALID_MAP] = "Error\nInvalid map\n";
 	err[ERR_INVALID_COLOR] = "Error\nInvalid color\n";
+	err[ERR_INVALID_TEXTURE] = "Error\nInvalid texture\n";
 	ft_putstr_fd(err[msg], 2);
 	return (msg + 1);
 }

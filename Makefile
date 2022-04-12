@@ -46,6 +46,7 @@ SOURCES_FILES =	main.c \
 				clean.c \
 				key_listener.c \
 				render_textures.c \
+				render_wall_utils.c \
 				# temp.c 
 
 SOURCES = $(addprefix $(SOURCES_PATH)/,$(SOURCES_FILES))
