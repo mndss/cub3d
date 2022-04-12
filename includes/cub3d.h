@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/11 17:41:54 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/11 20:51:24 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ typedef struct s_map_info {
 	int			color_f;
 	int			color_c;
 	char		**map;
+	int			n_lines;
+	int			n_cols;
 }	t_map_info;
 
 typedef struct s_data {
@@ -151,8 +153,8 @@ int		create_images(t_map_info *map_info);
 int		game_config(t_data *data);
 
 //FIND INTERCEPTIONS
-void	vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map);
-void	horz_hit(t_dist *horz, t_rays *ray, t_player *player, char **map);
+void	vert_hit(t_dist *vert, t_rays *ray, t_data *data);
+void	horz_hit(t_dist *horz, t_rays *ray, t_data *data);
 
 //RENDER WALLS
 int		render_walls(t_data *data);
