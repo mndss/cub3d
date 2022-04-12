@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_listener.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:51:39 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/11 21:10:46 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:48:10 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	key_press(int keycode, t_data *data)
 	if (keycode == KEY_S)
 		data->player.walk_direction = -1;
 	data->player.direction += data->player.turn_direction * (PI / 180 * 2);
+	find_facing_direction(&data->player);
 	if (!player_walk(data))
 	{
 		create_rays(data);

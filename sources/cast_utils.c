@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cast_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:57:29 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:20:49 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:41:27 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static float	normalize_angle(float angle)
+float	normalize_angle(float angle)
 {
 	angle = remainderf(angle, (2 * PI));
 	if (angle < 0)

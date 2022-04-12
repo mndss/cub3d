@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/12 16:20:03 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:53:23 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define MAX_INT 2147483647
 # define RIGHT_ARROW 65361
 # define LEFT_ARROW 65363
-# define KEY_W 44
-# define KEY_S 101
+# define KEY_W 119
+# define KEY_S 115
 
 # include <mlx.h>
 # include <libft.h>
@@ -59,6 +59,7 @@ typedef struct	s_proj
 	int			wall_strip_height;
 	int			wall_top_pxl;
 	int			wall_bot_pxl;
+	int			dst_from_top;
 	int			offset_y;
 	int			offset_x;
 	__uint32_t	color;
@@ -83,6 +84,8 @@ typedef struct s_player {
 	int		move_speed;
 	int		rotation_speed;
 	float	direction;
+	bool	is_facing_up;
+	bool	is_facing_left;
 }	t_player;
 
 typedef struct s_hits {
@@ -147,6 +150,8 @@ int				print_err(int msg);
 int				set_colors(char *str_color);
 void			ft_clean(t_map_info *map);
 unsigned int	get_color_pxl(t_img_addr *img, int x, int y);
+float			normalize_angle(float angle);
+void			find_facing_direction(t_player *player);
 
 //CHECKING ERRORS
 int		ft_setup(int argc, char *argv[], t_data *data);

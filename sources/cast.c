@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 16:00:42 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/11 20:39:45 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 18:10:44 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ static void	compare_hits(t_dist *horz, t_dist *vert, t_rays *ray)
 		ray->wall_hit_x = vert->x;
 		ray->wall_hit_y = vert->y;
 		ray->distance = vert->dist;
+		ray->hit_vert = true;
 	}
 	else
 	{
 		ray->wall_hit_x = horz->x;
 		ray->wall_hit_y = horz->y;
 		ray->distance = horz->dist;
+		ray->hit_vert = false;
 	}
 }
 
