@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:26:33 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/11 20:50:36 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:48:57 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_setup(int argc, char *argv[], t_data *data)
 	free_matrix(map);
 	if (check_map_info(data))
 		return (1);
-	//if (create_images(map_info))
-	//	return (2);
+	if (create_images(data))
+		return (2);
 	return (0);
 }

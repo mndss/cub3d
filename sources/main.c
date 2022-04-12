@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:57:10 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/11 20:00:12 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:00:27 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	start_game(t_data *data)
 {
-	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIN_WIDHT, WIN_HEIGHT, "CUB3D");
 	mlx_hook(data->win, 2, 1L << 0, key_press, data);
 	mlx_hook(data->win, 3, 1L << 1, key_release, data);
@@ -26,6 +25,7 @@ int	main(int argc, char *argv[])
 	t_data	data;
 
 	ft_memset(&data, '\0', sizeof(t_data));
+	data.mlx = mlx_init();
 	if (ft_setup(argc, argv, &data))
 	{
 		ft_clean(&data.map);

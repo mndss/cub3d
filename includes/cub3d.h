@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/11 20:51:24 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:20:03 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define PXL_P_RAY 1
 # define WIN_WIDHT 800
 # define WIN_HEIGHT 600
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define MAX_INT 2147483647
 # define RIGHT_ARROW 65361
 # define LEFT_ARROW 65363
@@ -34,13 +34,35 @@
 # include <math.h>
 
 typedef struct	s_img_addr {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			x;
+	int			y;
+	__uint32_t	*buffer;
 }				t_img_addr;
 
+typedef struct	s_img
+{
+	t_img_addr	no;
+	t_img_addr	so;
+	t_img_addr	we;
+	t_img_addr	ea;
+}				t_img;
+
+typedef struct	s_proj
+{
+	float		dist_persp;
+	float		wall_height_proj;
+	int			wall_strip_height;
+	int			wall_top_pxl;
+	int			wall_bot_pxl;
+	int			offset_y;
+	int			offset_x;
+	__uint32_t	color;
+}				t_proj;
 
 typedef struct s_cord {
 	float	x;
@@ -102,10 +124,11 @@ typedef struct s_data {
 	void		*win;
 	int			tile_size;
 	float		fov_angle;
+	t_img		textures;
 	t_map_info	map;
 	t_player	player;
 	t_rays		rays[WIN_WIDHT];
-	t_img_addr	img_addr;
+	t_img_addr	main_img;
 }	t_data;
 
 enum {
@@ -119,10 +142,11 @@ enum {
 };
 
 //UTILS
-void	free_matrix(char **ptr);
-int		print_err(int msg);
-int		set_colors(char *str_color);
-void	ft_clean(t_map_info *map);
+void			free_matrix(char **ptr);
+int				print_err(int msg);
+int				set_colors(char *str_color);
+void			ft_clean(t_map_info *map);
+unsigned int	get_color_pxl(t_img_addr *img, int x, int y);
 
 //CHECKING ERRORS
 int		ft_setup(int argc, char *argv[], t_data *data);
@@ -147,7 +171,7 @@ void	print_struct_map(t_map_info *map_info);
 void	print_player_info(t_player *player);
 
 //CREATE MAP
-int		create_images(t_map_info *map_info);
+int		create_images(t_data *data);
 
 // GAME CONFIG
 int		game_config(t_data *data);
@@ -158,6 +182,8 @@ void	horz_hit(t_dist *horz, t_rays *ray, t_data *data);
 
 //RENDER WALLS
 int		render_walls(t_data *data);
+void	render_textures(t_data *data);
+void	my_pixel_put(t_img_addr *img_addr, int x, int y, int color);
 
 //MOVEMENTS
 int	key_press(int keycode, t_data *data);
