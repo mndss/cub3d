@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:39:31 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/11 16:16:52 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/11 21:14:03 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	render_floor_n_sky(t_data *data)
 {
 	int	countx;
 	int	county;
-	
+
 	countx = 0;
 	county = 0;
 	while (county < WIN_WIDHT)
@@ -33,9 +33,11 @@ void	render_floor_n_sky(t_data *data)
 		while (countx < WIN_HEIGHT)
 		{
 			if (countx < WIN_HEIGHT / 2)
-				my_mlx_pixel_put(&data->img_addr, county, countx, data->map.color_c);
+				my_mlx_pixel_put(&data->img_addr, county, countx,
+					data->map.color_c);
 			else
-				my_mlx_pixel_put(&data->img_addr, county, countx, data->map.color_f);
+				my_mlx_pixel_put(&data->img_addr, county, countx,
+					data->map.color_f);
 			countx++;
 		}
 		county++;
@@ -47,7 +49,11 @@ int	draw_line(t_data *data, int ray_num)
 {
 	float	begin_x;
 	float	end_x;
+	int		tone;
 
+	tone = ((255 * 4) - data->rays[ray_num].distance) / 4;
+	if (tone < 0)
+		tone = 0;
 	if (data->rays[ray_num].wall_height > WIN_HEIGHT)
 	{
 		begin_x = 0;
@@ -60,7 +66,8 @@ int	draw_line(t_data *data, int ray_num)
 	}
 	while (begin_x <= end_x)
 	{
-		my_mlx_pixel_put(&data->img_addr, ray_num, begin_x, 0xFFFFFF);
+		my_mlx_pixel_put(&data->img_addr, ray_num, begin_x,
+			(tone * 65536 + tone * 256 + tone));
 		begin_x++;
 	}
 	return (0);

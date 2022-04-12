@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 16:00:42 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/11 16:40:16 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/11 20:39:45 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static int	cast_ray(t_rays *ray, t_data *data)
 	ft_memset(&horz, '\0', sizeof(t_dist));
 	ft_memset(&vert, '\0', sizeof(t_dist));
 	init_ray(ray);
-	horz_hit(&horz, ray, &data->player, data->map.map);
-	vert_hit(&vert, ray, &data->player, data->map.map);
+	horz_hit(&horz, ray, data);
+	vert_hit(&vert, ray, data);
 	compare_hits(&horz, &vert, ray);
 	find_wall_height(ray, data);
 	return (0);

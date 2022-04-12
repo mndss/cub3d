@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:51:39 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/11 17:44:45 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/11 21:10:46 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int	player_walk(t_data *data)
 	float	aux_x;
 	float	aux_y;
 
-	aux_x = data->player.x + (cos(data->player.direction) * data->player.walk_direction);
-	aux_y = data->player.y + (sin(data->player.direction) * data->player.walk_direction);
+	aux_x = data->player.x + (cos(data->player.direction) \
+			* (data->player.walk_direction * 3));
+	aux_y = data->player.y + (sin(data->player.direction) \
+			* (data->player.walk_direction * 3));
 	if (data->map.map[(int)aux_y / TILE_SIZE][(int)aux_x / TILE_SIZE] == '1')
 		return (1);
 	data->player.x = aux_x;
@@ -53,6 +55,3 @@ int	key_release(int keycode, t_data *data)
 		data->player.walk_direction = 0;
 	return (0);
 }
-
-
-//W 119 S 115

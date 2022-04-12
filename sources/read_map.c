@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:29:49 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:17:53 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/11 21:13:11 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,24 @@ int	count_lines(char *filename)
 	}
 	close(fd);
 	return (count);
+}
+
+static int	count_cols(char **map, int map_size)
+{
+	int	size;
+	int	aux;
+	int	i;
+
+	size = 0;
+	i = 6;
+	while (i <= (map_size + 6))
+	{
+		aux = ft_strlen(map[i]);
+		if (aux > size)
+			size = aux;
+		i++;
+	}
+	return (size);
 }
 
 char	**read_map(char *filename, int n_lines)
@@ -76,10 +94,15 @@ int	get_map(char **map, t_map_info *map_info, int map_size)
 
 	count_matrix = 6;
 	count_map = 0;
+	map_info->n_lines = map_size - 1;
+	map_info->n_cols = count_cols(map, map_info->n_lines);
 	map_info->map = (char **)ft_calloc((map_size + 1), sizeof(char *));
 	while (count_map < map_size)
 	{
-		map_info->map[count_map] = ft_strdup(map[count_matrix]);
+		map_info->map[count_map] = ft_calloc((map_info->n_cols + 1),
+				sizeof(char));
+		ft_strlcpy(map_info->map[count_map], map[count_matrix],
+			(map_info->n_cols + 1));
 		count_map++;
 		count_matrix++;
 	}
