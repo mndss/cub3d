@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 16:50:05 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/13 16:55:23 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/13 20:51:42 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+int	is_invalid_decimal(char *str)
+{
+	int	c;
+
+	c = 0;
+	while (str[c])
+	{
+		if (!ft_isdigit(str[c]))
+			return (1);
+		c++;
+	}
+	return (0);
+}
 
 int	char_occurrence(char *str, char c)
 {
