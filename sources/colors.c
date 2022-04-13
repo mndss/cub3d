@@ -6,11 +6,19 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 16:46:50 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:19:22 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 15:31:24 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+unsigned int	get_color_pxl(t_img_addr *img, int x, int y)
+{
+	char	*color;
+
+	color = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	return (*(unsigned int *)color);
+}
 
 static int	rgb_to_decimal(char **colors)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 16:00:42 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:20:29 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 18:10:44 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ static void	compare_hits(t_dist *horz, t_dist *vert, t_rays *ray)
 		ray->wall_hit_x = vert->x;
 		ray->wall_hit_y = vert->y;
 		ray->distance = vert->dist;
+		ray->hit_vert = true;
 	}
 	else
 	{
 		ray->wall_hit_x = horz->x;
 		ray->wall_hit_y = horz->y;
 		ray->distance = horz->dist;
+		ray->hit_vert = false;
 	}
 }
 
@@ -48,8 +50,8 @@ static int	cast_ray(t_rays *ray, t_data *data)
 	ft_memset(&horz, '\0', sizeof(t_dist));
 	ft_memset(&vert, '\0', sizeof(t_dist));
 	init_ray(ray);
-	horz_hit(&horz, ray, &data->player, data->map.map);
-	vert_hit(&vert, ray, &data->player, data->map.map);
+	horz_hit(&horz, ray, data);
+	vert_hit(&vert, ray, data);
 	compare_hits(&horz, &vert, ray);
 	find_wall_height(ray, data);
 	return (0);
@@ -64,8 +66,6 @@ void	create_rays(t_data *data)
 	count = 0;
 	angle_step = data->fov_angle / WIN_WIDHT;
 	inital_angle = (data->player.direction - data->fov_angle / 2);
-	data->player.x = 128;
-	data->player.y = 128;
 	while (count < WIN_WIDHT)
 	{
 		data->rays[count].ray_angle = inital_angle + angle_step * count;

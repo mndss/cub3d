@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:26:33 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:24:04 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:48:57 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ static int	invalid_args(int argc, const char *map)
 	return (0);
 }
 
-static int	check_map_info(t_map_info *map)
+static int	check_map_info(t_data *data)
 {
-	if (!*map->map)
+	if (!*data->map.map)
 		return (print_err(ERR_INVALID_MAP));
-	if (map->color_c == -1 || map->color_f == -1)
+	if (data->map.color_c == -1 || data->map.color_f == -1)
 		return (print_err(ERR_INVALID_COLOR));
+	if (check_map(data))
+		return (1);
 	return (0);
 }
 
@@ -45,10 +47,9 @@ int	ft_setup(int argc, char *argv[], t_data *data)
 	map = read_map(argv[1], n_lines);
 	get_info(map, &data->map, (n_lines - 6));
 	free_matrix(map);
-	if (check_map_info(&data->map))
+	if (check_map_info(data))
 		return (1);
-	check_map(data);
-	//if (create_images(map_info))
-	//	return (2);
+	if (create_images(data))
+		return (2);
 	return (0);
 }

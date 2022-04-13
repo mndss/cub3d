@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:09:23 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:10:51 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:38:22 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	free_matrix(char **ptr)
 	free_n_null(ptr);
 }
 
-void	ft_clean(t_map_info *map)
+void	ft_clean(t_map_info *map, t_data *data)
 {
 	if (map->map)
 		free_matrix(map->map);
@@ -44,4 +44,8 @@ void	ft_clean(t_map_info *map)
 	free_n_null(map->ea);
 	free_n_null(map->f);
 	free_n_null(map->c);
+	free_n_null(data->textures.no.buffer);
+	free_n_null(data->textures.so.buffer);
+	free_n_null(data->textures.we.buffer);
+	free_n_null(data->textures.ea.buffer);
 }

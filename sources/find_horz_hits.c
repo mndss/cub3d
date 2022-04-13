@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:06:30 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/07 17:23:22 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/11 21:14:35 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,16 @@ static void	find_step_horz(t_cord *step, t_rays *ray)
 		step->x *= -1;
 }
 
-static int	find_wall_horz(t_rays *ray, t_hits *hits, char **map, t_dist *horz)
+static int	find_wall_horz(t_rays *ray, t_hits *hits, t_data *data,
+			t_dist *horz)
 {
-	while (hits->next_hit.x >= 0 && hits->next_hit.x <= 7 * TILE_SIZE
-		&& hits->next_hit.y >= 0 && hits->next_hit.y <= 7 * TILE_SIZE
+	while (hits->next_hit.x >= 0
+		&& hits->next_hit.x <= data->map.n_cols * TILE_SIZE
+		&& hits->next_hit.y >= 0
+		&& hits->next_hit.y <= data->map.n_lines * TILE_SIZE
 	)
 	{
-		if (is_wall(&hits->next_hit, ray->is_up, false, map))
+		if (is_wall(&hits->next_hit, ray->is_up, false, data->map.map))
 		{
 			horz->x = hits->next_hit.x;
 			horz->y = hits->next_hit.y;
@@ -52,16 +55,16 @@ static int	find_wall_horz(t_rays *ray, t_hits *hits, char **map, t_dist *horz)
 	return (0);
 }
 
-void	horz_hit(t_dist *horz, t_rays *ray, t_player *player, char **map)
+void	horz_hit(t_dist *horz, t_rays *ray, t_data *data)
 {
 	t_hits	hits_horz;
 
 	horz->dist = (float)MAX_INT;
-	find_intercept_horz(&hits_horz.intercept, ray, player);
+	find_intercept_horz(&hits_horz.intercept, ray, &data->player);
 	find_step_horz(&hits_horz.step, ray);
 	hits_horz.next_hit.x = hits_horz.intercept.x;
 	hits_horz.next_hit.y = hits_horz.intercept.y;
-	if (find_wall_horz(ray, &hits_horz, map, horz))
-		horz->dist = find_distance(player->x,
-				player->y, horz->x, horz->y);
+	if (find_wall_horz(ray, &hits_horz, data, horz))
+		horz->dist = find_distance(data->player.x,
+				data->player.y, horz->x, horz->y);
 }

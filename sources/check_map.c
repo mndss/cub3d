@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:56:00 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/07 17:20:01 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/11 19:59:28 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static int	check_player(char cord, int y, int x, t_player *player)
 	{
 		if (player->x)
 			return (1);
-		player->y = y;
-		player->x = x;
+		player->y = y * TILE_SIZE + TILE_SIZE / 2;
+		player->x = x * TILE_SIZE + TILE_SIZE / 2;
 		player->direction = find_direction(cord);
 	}
 	return (0);

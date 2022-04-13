@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:42:10 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/07 17:23:47 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/11 21:12:06 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,16 @@ static void	find_step_vert(t_cord *step, t_rays *ray)
 		step->y *= -1;
 }
 
-static int	find_wall_vert(t_rays *ray, t_hits *hits, char **map, t_dist *vert)
+static int	find_wall_vert(t_rays *ray, t_hits *hits, t_data *data,
+			t_dist *vert)
 {
-	while (hits->next_hit.x >= 0 && hits->next_hit.x <= 7 * TILE_SIZE
-		&& hits->next_hit.y >= 0 && hits->next_hit.y <= 7 * TILE_SIZE
+	while (hits->next_hit.x >= 0
+		&& hits->next_hit.x <= data->map.n_cols * TILE_SIZE
+		&& hits->next_hit.y >= 0
+		&& hits->next_hit.y <= data->map.n_lines * TILE_SIZE
 	)
 	{
-		if (is_wall(&hits->next_hit, false, ray->is_left, map))
+		if (is_wall(&hits->next_hit, false, ray->is_left, data->map.map))
 		{
 			vert->x = hits->next_hit.x;
 			vert->y = hits->next_hit.y;
@@ -52,16 +55,16 @@ static int	find_wall_vert(t_rays *ray, t_hits *hits, char **map, t_dist *vert)
 	return (0);
 }
 
-void	vert_hit(t_dist *vert, t_rays *ray, t_player *player, char **map)
+void	vert_hit(t_dist *vert, t_rays *ray, t_data *data)
 {
 	t_hits	hits_vert;
 
 	vert->dist = (float)MAX_INT;
-	find_intercept_vert(&hits_vert.intercept, ray, player);
+	find_intercept_vert(&hits_vert.intercept, ray, &data->player);
 	find_step_vert(&hits_vert.step, ray);
 	hits_vert.next_hit.x = hits_vert.intercept.x;
 	hits_vert.next_hit.y = hits_vert.intercept.y;
-	if (find_wall_vert(ray, &hits_vert, map, vert))
-		vert->dist = find_distance(player->x, player->y,
+	if (find_wall_vert(ray, &hits_vert, data, vert))
+		vert->dist = find_distance(data->player.x, data->player.y,
 				vert->x, vert->y);
 }

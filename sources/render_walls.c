@@ -3,28 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   render_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:39:31 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/07 16:00:47 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:34:52 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	draw_line(t_data *data, int ray_num)
+void	my_pixel_put(t_img_addr *img_addr, int x, int y, int color)
 {
-	float	begin_x;
-	float	end_x;
+	char	*dst;
 
-	begin_x = (WIN_HEIGHT / 2) - (data->rays[ray_num].wall_height / 2);
-	end_x = (WIN_HEIGHT / 2) + (data->rays[ray_num].wall_height / 2);
-	while (begin_x <= end_x)
-	{
-		mlx_pixel_put(data->mlx, data->win, ray_num, begin_x, 0xFFFFFF);
-		begin_x++;
-	}
-	return (0);
+	dst = img_addr->addr + (y * img_addr->line_length \
+			+ x * (img_addr->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
 int	render_walls(t_data *data)
@@ -32,13 +26,12 @@ int	render_walls(t_data *data)
 	int	i;
 
 	i = 0;
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WIN_WIDHT, WIN_HEIGHT, "CUB3D");
-	while (i < WIN_WIDHT)
-	{
-		draw_line(data, i);
-		i++;
-	}
-	mlx_loop(data->mlx);
+	data->main_img.img = mlx_new_image(data->mlx, WIN_WIDHT, WIN_HEIGHT);
+	data->main_img.addr = mlx_get_data_addr(data->main_img.img,
+			&data->main_img.bits_per_pixel, &data->main_img.line_length,
+			&data->main_img.endian);
+	render_textures(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->main_img.img, 0, 0);
+	mlx_destroy_image(data->mlx, data->main_img.img);
 	return (0);
 }
