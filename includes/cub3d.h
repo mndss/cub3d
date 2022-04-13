@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/13 14:14:58 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:13:46 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # define MAX_INT 2147483647
 # define RIGHT_ARROW 65361
 # define LEFT_ARROW 65363
-# define KEY_W 44
-# define KEY_S 101
+# define KEY_W 119
+# define KEY_S 115
 # define KEY_A 97
-# define KEY_D 105
+# define KEY_D 100
 # define ESC 65307
 
 # include <mlx.h>
@@ -152,6 +152,7 @@ enum {
 //UTILS
 void			free_matrix(char **ptr);
 int				print_err(int msg);
+int				check_empty_line(char *str);
 int				set_colors(char *str_color);
 void			ft_clean(t_map_info *map, t_data *data);
 unsigned int	get_color_pxl(t_img_addr *img, int x, int y);

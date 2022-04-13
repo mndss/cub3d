@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 16:46:50 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/12 15:31:24 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:39:29 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,29 @@ unsigned int	get_color_pxl(t_img_addr *img, int x, int y)
 	return (*(unsigned int *)color);
 }
 
+static int	check_invalid_color(char *color)
+{
+	char	*aux;
+
+	aux = ft_strtrim(color, " ");
+	if (ft_strlen(aux) > 0 && ft_strlen(aux) <= 3)
+	{
+		free(aux);
+		return (0);
+	}
+	free(aux);
+	return (1);
+}
+
 static int	rgb_to_decimal(char **colors)
 {
 	int	r;
 	int	g;
 	int	b;
 
+	if (check_invalid_color(colors[0]) || check_invalid_color(colors[1])
+		|| check_invalid_color(colors[2]))
+		return (-1);
 	r = ft_atoi(colors[0]);
 	g = ft_atoi(colors[1]);
 	b = ft_atoi(colors[2]);
@@ -56,6 +73,22 @@ int	set_colors(char *str_color)
 	return (dec_color);
 }
 
+int char_occurrence(char *str, char c)
+{
+	int	count;
+	int	times;
+
+	count = 0;
+	times = 0;
+	while (str[count])
+	{
+		if (str[count] == c)
+			times++;
+		count++;
+	}
+	return (times);
+}
+
 char	*get_colors(char *prefix, char **map)
 {
 	int		count;
@@ -67,6 +100,11 @@ char	*get_colors(char *prefix, char **map)
 		if (!ft_strncmp(prefix, map[count], 1))
 		{
 			values = ft_strdup(map[count] + 1);
+			if (char_occurrence(values, ',') != 2)
+			{
+				free(values);
+				return (NULL);
+			}
 			return (values);
 		}
 		count++;

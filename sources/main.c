@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:57:10 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/12 20:39:04 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/13 14:57:31 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	close_game(t_data *data)
 {
 	ft_clean(&data->map, data);
-	mlx_destroy_window(data->mlx, data->win);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	exit(0);
@@ -40,7 +41,7 @@ int	main(int argc, char *argv[])
 	data.mlx = mlx_init();
 	if (ft_setup(argc, argv, &data))
 	{
-		ft_clean(&data.map, &data);
+		close_game(&data);
 		return (1);
 	}
 	game_config(&data);

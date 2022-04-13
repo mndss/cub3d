@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:29:49 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/11 21:13:11 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:15:19 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	count_lines(char *filename)
 	while (gnl == 1)
 	{
 		gnl = get_next_line(fd, &line_read);
-		if (!(*line_read == '\0'))
+		if (!(*line_read == '\0') && !check_empty_line(line_read))
 			count++;
 		if (line_read)
 			free(line_read);
@@ -76,7 +76,7 @@ char	**read_map(char *filename, int n_lines)
 	while (gnl == 1)
 	{
 		gnl = get_next_line(fd, &map[count]);
-		if (*map[count] == '\0')
+		if (*map[count] == '\0' || check_empty_line(map[count]))
 		{
 			free(map[count]);
 			map[count] = NULL;

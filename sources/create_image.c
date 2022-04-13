@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 20:46:27 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/12 20:27:10 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:34:30 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,30 @@ static void	load_buffer(t_img_addr *img)
 	}
 }
 
+static void	destroy_imgs(t_data *data)
+{
+	if (data->textures.no.img)
+		mlx_destroy_image(data->mlx, data->textures.no.img);
+	if (data->textures.so.img)
+		mlx_destroy_image(data->mlx, data->textures.so.img);
+	if (data->textures.ea.img)
+		mlx_destroy_image(data->mlx, data->textures.ea.img);
+	if (data->textures.we.img)
+		mlx_destroy_image(data->mlx, data->textures.we.img);
+}
+
 int	create_images(t_data *data)
 {
 	if (load_imgs(data))
+	{
+		destroy_imgs(data);
 		return (print_err(ERR_INVALID_TEXTURE));
+	}
 	load_img_add(&data->textures);
 	load_buffer(&data->textures.no);
 	load_buffer(&data->textures.so);
 	load_buffer(&data->textures.ea);
 	load_buffer(&data->textures.we);
-	mlx_destroy_image(data->mlx, data->textures.no.img);
-	mlx_destroy_image(data->mlx, data->textures.so.img);
-	mlx_destroy_image(data->mlx, data->textures.ea.img);
-	mlx_destroy_image(data->mlx, data->textures.we.img);
+	destroy_imgs(data);
 	return (0);
 }

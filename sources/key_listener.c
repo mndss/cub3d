@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:51:39 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/13 14:29:24 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:47:52 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	key_press(int keycode, t_data *data)
 	if (keycode == KEY_S)
 		data->player.walk_direction = -1;
 	if (keycode == KEY_A)
-		data->player.side_walk = -1;
-	if (keycode == KEY_D)
 		data->player.side_walk = +1;
+	if (keycode == KEY_D)
+		data->player.side_walk = -1;
 	if (keycode == ESC)
 		close_game(data);
 	data->player.direction += data->player.turn_direction * (PI / 180 * 2);
