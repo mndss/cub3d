@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_config.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 20:16:30 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/13 16:26:26 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:51:51 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,6 @@ static void	trim_map_info(char **map)
 		free(aux);
 		c++;
 	}
-}
-
-int	check_empty_line(char *str)
-{
-	int	c;
-
-	c = 0;
-	while (str[c])
-	{
-		if (str[c] != ' ')
-			return (0);
-		c++;
-	}
-	return (1);
 }
 
 void	get_info(char **map, t_map_info *map_info, int map_size)

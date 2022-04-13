@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 16:46:50 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/13 16:39:29 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:51:12 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,6 @@ int	set_colors(char *str_color)
 	dec_color = rgb_to_decimal(colors);
 	free_matrix(colors);
 	return (dec_color);
-}
-
-int char_occurrence(char *str, char c)
-{
-	int	count;
-	int	times;
-
-	count = 0;
-	times = 0;
-	while (str[count])
-	{
-		if (str[count] == c)
-			times++;
-		count++;
-	}
-	return (times);
 }
 
 char	*get_colors(char *prefix, char **map)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:26:33 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/12 16:48:57 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:57:25 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int	ft_setup(int argc, char *argv[], t_data *data)
 		return (1);
 	if (create_images(data))
 		return (2);
+	data->fov_angle = 60 * PI / 180;
 	return (0);
 }

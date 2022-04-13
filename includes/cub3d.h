@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/13 15:13:46 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/13 17:01:58 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ void			ft_clean(t_map_info *map, t_data *data);
 unsigned int	get_color_pxl(t_img_addr *img, int x, int y);
 float			normalize_angle(float angle);
 void			find_facing_direction(t_player *player);
+int				char_occurrence(char *str, char c);
 
 //CHECKING ERRORS
 int				ft_setup(int argc, char *argv[], t_data *data);
