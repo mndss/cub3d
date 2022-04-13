@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:51:39 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/13 16:47:52 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/13 20:48:24 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	player_walk(t_data *data)
 			* (data->player.walk_direction * (TILE_SIZE / 16))) \
 			+ (sin((data->player.direction) - (PI / 2)) \
 			* (data->player.side_walk * (TILE_SIZE / 16)));
-	if (data->map.map[(int)aux_y / TILE_SIZE][(int)aux_x / TILE_SIZE] == '1')
+	if (data->map.map[((int)aux_y + 5) / TILE_SIZE] \
+		[((int)aux_x + 5) / TILE_SIZE] == '1'
+		|| data->map.map[((int)aux_y - 5) / TILE_SIZE] \
+		[((int)aux_x - 5) / TILE_SIZE] == '1')
 		return (1);
 	data->player.x = aux_x;
 	data->player.y = aux_y;

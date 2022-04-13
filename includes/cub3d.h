@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/13 22:08:32 by coder            ###   ########.fr       */
+/*   Updated: 2022/04/13 20:44:15 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ enum {
 //UTILS
 void			free_matrix(char **ptr);
 int				print_err(int msg);
+int				is_invalid_decimal(char *str);
 int				check_empty_line(char *str);
 int				set_colors(char *str_color);
 void			ft_clean(t_map_info *map, t_data *data);

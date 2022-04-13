@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 16:46:50 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/13 16:51:12 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/13 20:45:08 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	check_invalid_color(char *color)
 	char	*aux;
 
 	aux = ft_strtrim(color, " ");
+	if (is_invalid_decimal(color))
+		return (1);
 	if (ft_strlen(aux) > 0 && ft_strlen(aux) <= 3)
 	{
 		free(aux);
