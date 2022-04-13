@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/13 17:01:58 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/13 22:08:32 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define ERROR_SIZE 8
 # define PI 3.141592
 # define PXL_P_RAY 1
-# define WIN_WIDHT 1280
-# define WIN_HEIGHT 720
+# define WIN_WIDHT 800
+# define WIN_HEIGHT 600
 # define TILE_SIZE 64
 # define MAX_INT 2147483647
 # define RIGHT_ARROW 65361
