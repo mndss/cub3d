@@ -1,7 +1,7 @@
-NO ./assets/textures/wall2k.xpm
-SO ./assets/textures/wall2k.xpm
-WE ./assets/textures/wall2k.xpm
-EA ./assets/textures/wall2k.xpm
+NO ./assets/textures/brick.xpm
+SO ./assets/textures/brick.xpm
+WE ./assets/textures/brick.xpm
+EA ./assets/textures/brick.xpm
 
 F 126,200,80
 

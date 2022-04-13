@@ -6,7 +6,7 @@
 /*   By: guferrei <guferrei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:47:47 by guferrei          #+#    #+#             */
-/*   Updated: 2022/04/12 21:43:33 by guferrei         ###   ########.fr       */
+/*   Updated: 2022/04/13 14:14:58 by guferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 # define PXL_P_RAY 1
 # define WIN_WIDHT 1280
 # define WIN_HEIGHT 720
-# define TILE_SIZE 2048
+# define TILE_SIZE 64
 # define MAX_INT 2147483647
 # define RIGHT_ARROW 65361
 # define LEFT_ARROW 65363
 # define KEY_W 44
 # define KEY_S 101
+# define KEY_A 97
+# define KEY_D 105
 # define ESC 65307
 
 # include <mlx.h>
@@ -82,6 +84,7 @@ typedef struct s_player {
 	float	x;
 	int		turn_direction;
 	int		walk_direction;
+	int		side_walk;
 	int		move_speed;
 	int		rotation_speed;
 	float	direction;
