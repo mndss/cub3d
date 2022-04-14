@@ -36,7 +36,6 @@ SOURCES_FILES =	main.c \
 				get_map_config.c \
 				create_image.c \
 				check_map.c \
-				set_game.c \
 				cast.c \
 				cast_utils.c \
 				find_vert_hits.c \

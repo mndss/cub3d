@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:57:10 by elima-me          #+#    #+#             */
-/*   Updated: 2022/04/13 16:57:43 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/04/13 21:20:06 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	start_game(t_data *data)
 	mlx_hook(data->win, 2, 1L << 0, key_press, data);
 	mlx_hook(data->win, 3, 1L << 1, key_release, data);
 	mlx_hook(data->win, 17, 0L, close_game, data);
+	mlx_expose_hook(data->win, render_walls, data);
 	mlx_loop(data->mlx);
 }
 
